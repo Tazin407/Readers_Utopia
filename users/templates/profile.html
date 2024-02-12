@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{%block content%}
+
+<div class="align-content-center p-3 " >
+
+<table class="table table-light">
+    <th>
+       <tr>
+        <td> Book Title</td>
+        <td> Borrow Date</td>
+        <td> Transaction</td>
+       </tr>
+
+    </th>
+    {% for borrow in object_list %}
+
+    <tr>
+        <td> {{borrow.book.title}} </td>
+        <td>{{borrow.borrow_date}}</td>
+        {%if borrow.returned_book %}
+
+        <td> <button class='btn btn light' disabled > Returned</button> </td>
+
+        {% else %}
+        <td><a href="{% url 'return' borrow.book.id %}" class='btn btn-success'> Return book</a></td>
+
+        {% endif %}
+    </tr>
+
+    {% endfor %}
+  </table>
+
+</div>
+
+{% endblock %}

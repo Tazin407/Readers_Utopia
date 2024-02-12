@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+
+{%block content%}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-secondary" role="alert">
+        {{ message }}
+      </div>
+      
+    {% endfor %}
+{% endif %}
+
+<div class='m-3 p-5' >
+
+    <img src="{{book.image.url}}" alt=""><br>
+    <h1>{{book.title}}</h1><br>
+    <p>{{book.description}} </p>
+
+    <div class='d-flex justify-content-left'>
+        {%for cat in book.categories.all%}
+      <button class='btn btn-primary m-1 w-3' disabled >{{cat.title}}</button>
+      <br>
+      {% endfor %}
+      </div>
+      <br>
+
+      <h2>Borrowing Price: {{book.borrow_price}} BDT</h2><br>
+
+    {%if user.is_authenticated%}
+    <a href="{% url 'borrow' book.id %}" class='btn btn-success' >Borrow Now</a>
+    {% endif %}
+    
+
+    <h4>{{review | length}} reviews</h4>
+
+{% for r in review %}
+
+<div class='m-4 bg-light p-2' >
+    <h5>{{r.user.username}}</h5> <br>
+    {{r.rate}}
+</div>
+
+
+{% endfor %}
+
+{%if user.is_authenticated%}
+
+<form action="" method='post' class='m-2'>
+    {% csrf_token %}
+    {{form | crispy}}
+    <button class='btn btn-warning' type='Submit'>Submit</button>
+    
+    </form>
+
+{% endif %}
+
+</div>
+
+
+
+{% endblock %}
