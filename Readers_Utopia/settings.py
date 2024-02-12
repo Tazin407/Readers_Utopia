@@ -112,7 +112,7 @@ WSGI_APPLICATION = 'Readers_Utopia.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://readers_utopia_user:xUY5XdUS8q5ZpzQ6ejegOHtk10lmumuw@dpg-cn54jlvqd2ns73eotefg-a/readers_utopia',
+        default='postgres://readers_utopia_user:xUY5XdUS8q5ZpzQ6ejegOHtk10lmumuw@dpg-cn54jlvqd2ns73eotefg-a.oregon-postgres.render.com/readers_utopia',
     )
 }
 
